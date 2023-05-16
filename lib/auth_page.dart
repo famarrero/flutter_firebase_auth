@@ -3,26 +3,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class AuthPage extends StatefulWidget {
+  const AuthPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<AuthPage> createState() => _AuthPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _AuthPageState extends State<AuthPage> {
   late TextEditingController emailController;
   late TextEditingController passwordController;
-  late bool isSingIn;
+  late bool isSingUp;
 
   @override
   void initState() {
     emailController = TextEditingController();
     passwordController = TextEditingController();
-    isSingIn = false;
-
-    emailController.text = 'felix-test@gmail.com';
-    passwordController.text = '12345678';
+    isSingUp = false;   
 
     super.initState();
   }
@@ -60,20 +57,20 @@ class _LoginPageState extends State<LoginPage> {
               child: const Text('Sing in'),
             ),
             const SizedBox(height: 24.0),
-            if (isSingIn) ...[
+            if (isSingUp) ...[
               const CupertinoActivityIndicator(radius: 24.0),
             ],
             RichText(
               text: TextSpan(
-                text: 'No account? ',
+                text: 'Already have an account? ',
                 style: const TextStyle(
                   color: Colors.black,
                 ),
                 children: [
                   TextSpan(
                     recognizer: TapGestureRecognizer()
-                      ..onTap = onSingUpTextPressed,
-                    text: 'Sing Up',
+                      ..onTap = onSingInTextPressed,
+                    text: 'Log in',
                     style: const TextStyle(
                       color: Colors.blue,
                     ),
@@ -87,21 +84,21 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void onSingUpTextPressed() {}
+  void onSingInTextPressed() {}
 
   Future<void> signIn() async {
     setState(() {
-      isSingIn = true;
+      isSingUp = true;
     });
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passwordController.text.trim());
     } on FirebaseAuthException catch (e) {
       print(e);
     }
     setState(() {
-      isSingIn = false;
+      isSingUp = false;
     });
   }
 }
