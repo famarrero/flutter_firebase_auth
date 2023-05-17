@@ -40,41 +40,87 @@ class _LoginPageState extends State<LoginPage> {
       child: Scaffold(
         body: BlocConsumer<LoginBloc, LoginState>(
           listener: (context, state) {
-            if (state.loginStatus.failure != null) {
+            if (state.signIn.failure != null) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(state.loginStatus.failure!.message),
+                  content: Text(state.signIn.failure!.message),
                 ),
               );
             }
           },
           builder: (context, state) {
             return Padding(
-              padding: const EdgeInsets.all(24.0),
+              padding: const EdgeInsets.all(32.0),
               child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const Text(
+                    "Sign in",
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
                   TextField(
                     controller: emailController,
-                    decoration: const InputDecoration(labelText: 'Email'),
+                    decoration: InputDecoration(
+                      labelText: 'Email',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: const BorderSide(
+                          color: Colors.grey,
+                          width: 0.50,
+                        ),
+                      ),
+                    ),
                   ),
-                  const SizedBox(height: 4.0),
+                  const SizedBox(height: 12.0),
                   TextField(
                     controller: passwordController,
-                    decoration: const InputDecoration(labelText: 'Password'),
+                    decoration: InputDecoration(
+                      labelText: 'Password',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: const BorderSide(
+                          color: Colors.grey,
+                          width: 0.50,
+                        ),
+                      ),
+                    ),
+                    obscureText: true,
+                  ),
+                  const SizedBox(height: 12.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap: () {},
+                        child: const Text(
+                          'I forgot my password',
+                          style: TextStyle(color: Colors.blue),
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 24.0),
-                  OutlinedButton(
-                    onPressed: () => context.read<LoginBloc>()
-                      ..add(LoginEvent.onLoginPressed(
-                        email: emailController.text.trim(),
-                        password: passwordController.text.trim(),
-                      )),
-                    child: const Text('Sing in'),
-                  ),
+                  state.signIn.isLoading
+                      ? const CupertinoActivityIndicator(
+                          radius: 16.0,
+                          color: Colors.blue,
+                        )
+                      : ElevatedButton(
+                          onPressed: () => context.read<LoginBloc>()
+                            ..add(LoginEvent.onLoginPressed(
+                              email: emailController.text.trim(),
+                              password: passwordController.text.trim(),
+                            )),
+                          child: const Text('Sign in'),
+                        ),
                   const SizedBox(height: 24.0),
-                  if (state.loginStatus.isLoading) ...[
-                    const CupertinoActivityIndicator(radius: 24.0),
-                  ],
                   RichText(
                     text: TextSpan(
                       text: 'No account? ',
@@ -85,7 +131,7 @@ class _LoginPageState extends State<LoginPage> {
                         TextSpan(
                           recognizer: TapGestureRecognizer()
                             ..onTap = onSingUpTextPressed,
-                          text: 'Sing Up',
+                          text: 'Sign Up',
                           style: const TextStyle(
                             color: Colors.blue,
                           ),

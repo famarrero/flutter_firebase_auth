@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_auth/pages/auth/components/email_verification.dart';
+import 'package:go_router/go_router.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);
@@ -55,67 +58,56 @@ class _AuthPageState extends State<AuthPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(
-                height: 40,
-              ),
+              const SizedBox(height: 40.0),
               TextFormField(
                 controller: _emailController,
-                // validator: (val) => widget.onValidate(val),
                 decoration: InputDecoration(
+                  labelText: 'Email',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.grey, width: 1),
+                    borderSide: const BorderSide(
+                      color: Colors.grey,
+                      width: 0.50,
+                    ),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.grey, width: 1),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.grey, width: 1),
-                  ),
-                  filled: true,
-                  fillColor: Colors.white,
-                  hintText: 'Enter Email',
-                  // hintStyle: AppTextStyle.lightGreyText,
-                  isDense: true,
-                  contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 12.0),
               TextFormField(
                 controller: _passwordController,
                 decoration: InputDecoration(
+                  labelText: 'Password',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.grey, width: 1),
+                    borderSide: const BorderSide(
+                      color: Colors.grey,
+                      width: 0.50,
+                    ),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.grey, width: 1),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.grey, width: 1),
-                  ),
-                  filled: true,
-                  fillColor: Colors.white,
-                  hintText: 'Enter Password',
-                  // hintStyle: AppTextStyle.lightGreyText,
-                  isDense: true,
-                  contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
                 ),
                 obscureText: true,
               ),
-              const SizedBox(
-                height: 20,
+              const SizedBox(height: 12.0),
+              TextFormField(
+                controller: _passwordController,
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: const BorderSide(
+                      color: Colors.grey,
+                      width: 0.50,
+                    ),
+                  ),
+                ),
+                obscureText: true,
               ),
+              const SizedBox(height: 24.0),
               _isLoading
-                  ? const CircularProgressIndicator()
+                  ? const CupertinoActivityIndicator(
+                      radius: 16.0,
+                      color: Colors.blue,
+                    )
                   : ElevatedButton(
                       onPressed: () async {
                         setState(() {
@@ -137,11 +129,35 @@ class _AuthPageState extends State<AuthPage> {
                           _isLoading = false;
                         });
                       },
-                      child: const Text('Sign Up'))
+                      child: const Text('Sign Up'),
+                    ),
+              const SizedBox(height: 24.0),
+              RichText(
+                text: TextSpan(
+                  text: 'Do you already have an account? ',
+                  style: const TextStyle(
+                    color: Colors.black,
+                  ),
+                  children: [
+                    TextSpan(
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = onSingInTextPressed,
+                      text: 'Sign In',
+                      style: const TextStyle(
+                        color: Colors.blue,
+                      ),
+                    )
+                  ],
+                ),
+              )
             ],
           ),
         ),
       ),
     );
+  }
+
+  void onSingInTextPressed() {
+    context.pop();
   }
 }

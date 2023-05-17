@@ -19,38 +19,38 @@ mixin _$LoginEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) onLoginPressed,
-    required TResult Function() onSingOutPressed,
+    required TResult Function() onSignOutPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? onLoginPressed,
-    TResult? Function()? onSingOutPressed,
+    TResult? Function()? onSignOutPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? onLoginPressed,
-    TResult Function()? onSingOutPressed,
+    TResult Function()? onSignOutPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoginEventLoginPressed value) onLoginPressed,
-    required TResult Function(_LoginEventSingOutPressed value) onSingOutPressed,
+    required TResult Function(_LoginEventSingOutPressed value) onSignOutPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoginEventLoginPressed value)? onLoginPressed,
-    TResult? Function(_LoginEventSingOutPressed value)? onSingOutPressed,
+    TResult? Function(_LoginEventSingOutPressed value)? onSignOutPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoginEventLoginPressed value)? onLoginPressed,
-    TResult Function(_LoginEventSingOutPressed value)? onSingOutPressed,
+    TResult Function(_LoginEventSingOutPressed value)? onSignOutPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -150,7 +150,7 @@ class _$_LoginEventLoginPressed implements _LoginEventLoginPressed {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) onLoginPressed,
-    required TResult Function() onSingOutPressed,
+    required TResult Function() onSignOutPressed,
   }) {
     return onLoginPressed(email, password);
   }
@@ -159,7 +159,7 @@ class _$_LoginEventLoginPressed implements _LoginEventLoginPressed {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? onLoginPressed,
-    TResult? Function()? onSingOutPressed,
+    TResult? Function()? onSignOutPressed,
   }) {
     return onLoginPressed?.call(email, password);
   }
@@ -168,7 +168,7 @@ class _$_LoginEventLoginPressed implements _LoginEventLoginPressed {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? onLoginPressed,
-    TResult Function()? onSingOutPressed,
+    TResult Function()? onSignOutPressed,
     required TResult orElse(),
   }) {
     if (onLoginPressed != null) {
@@ -181,7 +181,7 @@ class _$_LoginEventLoginPressed implements _LoginEventLoginPressed {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoginEventLoginPressed value) onLoginPressed,
-    required TResult Function(_LoginEventSingOutPressed value) onSingOutPressed,
+    required TResult Function(_LoginEventSingOutPressed value) onSignOutPressed,
   }) {
     return onLoginPressed(this);
   }
@@ -190,7 +190,7 @@ class _$_LoginEventLoginPressed implements _LoginEventLoginPressed {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoginEventLoginPressed value)? onLoginPressed,
-    TResult? Function(_LoginEventSingOutPressed value)? onSingOutPressed,
+    TResult? Function(_LoginEventSingOutPressed value)? onSignOutPressed,
   }) {
     return onLoginPressed?.call(this);
   }
@@ -199,7 +199,7 @@ class _$_LoginEventLoginPressed implements _LoginEventLoginPressed {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoginEventLoginPressed value)? onLoginPressed,
-    TResult Function(_LoginEventSingOutPressed value)? onSingOutPressed,
+    TResult Function(_LoginEventSingOutPressed value)? onSignOutPressed,
     required TResult orElse(),
   }) {
     if (onLoginPressed != null) {
@@ -245,7 +245,7 @@ class _$_LoginEventSingOutPressed implements _LoginEventSingOutPressed {
 
   @override
   String toString() {
-    return 'LoginEvent.onSingOutPressed()';
+    return 'LoginEvent.onSignOutPressed()';
   }
 
   @override
@@ -262,29 +262,29 @@ class _$_LoginEventSingOutPressed implements _LoginEventSingOutPressed {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) onLoginPressed,
-    required TResult Function() onSingOutPressed,
+    required TResult Function() onSignOutPressed,
   }) {
-    return onSingOutPressed();
+    return onSignOutPressed();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? onLoginPressed,
-    TResult? Function()? onSingOutPressed,
+    TResult? Function()? onSignOutPressed,
   }) {
-    return onSingOutPressed?.call();
+    return onSignOutPressed?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? onLoginPressed,
-    TResult Function()? onSingOutPressed,
+    TResult Function()? onSignOutPressed,
     required TResult orElse(),
   }) {
-    if (onSingOutPressed != null) {
-      return onSingOutPressed();
+    if (onSignOutPressed != null) {
+      return onSignOutPressed();
     }
     return orElse();
   }
@@ -293,29 +293,29 @@ class _$_LoginEventSingOutPressed implements _LoginEventSingOutPressed {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoginEventLoginPressed value) onLoginPressed,
-    required TResult Function(_LoginEventSingOutPressed value) onSingOutPressed,
+    required TResult Function(_LoginEventSingOutPressed value) onSignOutPressed,
   }) {
-    return onSingOutPressed(this);
+    return onSignOutPressed(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoginEventLoginPressed value)? onLoginPressed,
-    TResult? Function(_LoginEventSingOutPressed value)? onSingOutPressed,
+    TResult? Function(_LoginEventSingOutPressed value)? onSignOutPressed,
   }) {
-    return onSingOutPressed?.call(this);
+    return onSignOutPressed?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoginEventLoginPressed value)? onLoginPressed,
-    TResult Function(_LoginEventSingOutPressed value)? onSingOutPressed,
+    TResult Function(_LoginEventSingOutPressed value)? onSignOutPressed,
     required TResult orElse(),
   }) {
-    if (onSingOutPressed != null) {
-      return onSingOutPressed(this);
+    if (onSignOutPressed != null) {
+      return onSignOutPressed(this);
     }
     return orElse();
   }
@@ -327,8 +327,9 @@ abstract class _LoginEventSingOutPressed implements LoginEvent {
 
 /// @nodoc
 mixin _$LoginState {
-  BaseState<LoginStatusEnum> get loginStatus =>
-      throw _privateConstructorUsedError;
+  LoginStatusEnum get loginStatus => throw _privateConstructorUsedError;
+  BaseState<bool> get signIn => throw _privateConstructorUsedError;
+  BaseState<bool> get signOut => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LoginStateCopyWith<LoginState> get copyWith =>
@@ -341,7 +342,10 @@ abstract class $LoginStateCopyWith<$Res> {
           LoginState value, $Res Function(LoginState) then) =
       _$LoginStateCopyWithImpl<$Res, LoginState>;
   @useResult
-  $Res call({BaseState<LoginStatusEnum> loginStatus});
+  $Res call(
+      {LoginStatusEnum loginStatus,
+      BaseState<bool> signIn,
+      BaseState<bool> signOut});
 }
 
 /// @nodoc
@@ -358,12 +362,22 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
   @override
   $Res call({
     Object? loginStatus = null,
+    Object? signIn = null,
+    Object? signOut = null,
   }) {
     return _then(_value.copyWith(
       loginStatus: null == loginStatus
           ? _value.loginStatus
           : loginStatus // ignore: cast_nullable_to_non_nullable
-              as BaseState<LoginStatusEnum>,
+              as LoginStatusEnum,
+      signIn: null == signIn
+          ? _value.signIn
+          : signIn // ignore: cast_nullable_to_non_nullable
+              as BaseState<bool>,
+      signOut: null == signOut
+          ? _value.signOut
+          : signOut // ignore: cast_nullable_to_non_nullable
+              as BaseState<bool>,
     ) as $Val);
   }
 }
@@ -376,7 +390,10 @@ abstract class _$$_LoginStateCopyWith<$Res>
       __$$_LoginStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BaseState<LoginStatusEnum> loginStatus});
+  $Res call(
+      {LoginStatusEnum loginStatus,
+      BaseState<bool> signIn,
+      BaseState<bool> signOut});
 }
 
 /// @nodoc
@@ -391,12 +408,22 @@ class __$$_LoginStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? loginStatus = null,
+    Object? signIn = null,
+    Object? signOut = null,
   }) {
     return _then(_$_LoginState(
       loginStatus: null == loginStatus
           ? _value.loginStatus
           : loginStatus // ignore: cast_nullable_to_non_nullable
-              as BaseState<LoginStatusEnum>,
+              as LoginStatusEnum,
+      signIn: null == signIn
+          ? _value.signIn
+          : signIn // ignore: cast_nullable_to_non_nullable
+              as BaseState<bool>,
+      signOut: null == signOut
+          ? _value.signOut
+          : signOut // ignore: cast_nullable_to_non_nullable
+              as BaseState<bool>,
     ));
   }
 }
@@ -404,14 +431,20 @@ class __$$_LoginStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LoginState extends _LoginState {
-  const _$_LoginState({required this.loginStatus}) : super._();
+  const _$_LoginState(
+      {required this.loginStatus, required this.signIn, required this.signOut})
+      : super._();
 
   @override
-  final BaseState<LoginStatusEnum> loginStatus;
+  final LoginStatusEnum loginStatus;
+  @override
+  final BaseState<bool> signIn;
+  @override
+  final BaseState<bool> signOut;
 
   @override
   String toString() {
-    return 'LoginState(loginStatus: $loginStatus)';
+    return 'LoginState(loginStatus: $loginStatus, signIn: $signIn, signOut: $signOut)';
   }
 
   @override
@@ -420,11 +453,13 @@ class _$_LoginState extends _LoginState {
         (other.runtimeType == runtimeType &&
             other is _$_LoginState &&
             (identical(other.loginStatus, loginStatus) ||
-                other.loginStatus == loginStatus));
+                other.loginStatus == loginStatus) &&
+            (identical(other.signIn, signIn) || other.signIn == signIn) &&
+            (identical(other.signOut, signOut) || other.signOut == signOut));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loginStatus);
+  int get hashCode => Object.hash(runtimeType, loginStatus, signIn, signOut);
 
   @JsonKey(ignore: true)
   @override
@@ -435,11 +470,17 @@ class _$_LoginState extends _LoginState {
 
 abstract class _LoginState extends LoginState {
   const factory _LoginState(
-      {required final BaseState<LoginStatusEnum> loginStatus}) = _$_LoginState;
+      {required final LoginStatusEnum loginStatus,
+      required final BaseState<bool> signIn,
+      required final BaseState<bool> signOut}) = _$_LoginState;
   const _LoginState._() : super._();
 
   @override
-  BaseState<LoginStatusEnum> get loginStatus;
+  LoginStatusEnum get loginStatus;
+  @override
+  BaseState<bool> get signIn;
+  @override
+  BaseState<bool> get signOut;
   @override
   @JsonKey(ignore: true)
   _$$_LoginStateCopyWith<_$_LoginState> get copyWith =>

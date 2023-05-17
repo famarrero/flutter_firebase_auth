@@ -52,7 +52,7 @@ GoRouter getAppRoute(LoginBloc loginCubit) => GoRouter(
         // verify is app is in authenticating route
         final locationIsAuthenticationPage =
             state.subloc == Routes.authenticationPath;
-        if (loginStatus.data == LoginStatusEnum.authenticating) {
+        if (loginStatus == LoginStatusEnum.authenticating) {
           return locationIsAuthenticationPage
               ? null
               : Routes.authenticationPath;
@@ -61,7 +61,7 @@ GoRouter getAppRoute(LoginBloc loginCubit) => GoRouter(
         // verify is app is in login route
         final locationIsLoginPage = state.subloc == Routes.loginPath;
         // if LoginStatus is different to logged return the login route if app ist not in there
-        if (loginStatus.data == LoginStatusEnum.unLoggedIn) {
+        if (loginStatus == LoginStatusEnum.unLoggedIn) {
           return locationIsLoginPage ? null : Routes.loginPath;
         }
         // if the user is logged in but still on the login page, send them to

@@ -7,5 +7,5 @@ class LoginEvent with _$LoginEvent {
     required String password,
   }) = _LoginEventLoginPressed;
 
-  const factory LoginEvent.onSingOutPressed() = _LoginEventSingOutPressed;
+  const factory LoginEvent.onSignOutPressed() = _LoginEventSingOutPressed;
 }
