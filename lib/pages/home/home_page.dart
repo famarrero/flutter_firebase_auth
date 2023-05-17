@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_firebase_auth/pages/login/bloc/login_bloc.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -25,16 +27,13 @@ class HomePage extends StatelessWidget {
               ],
             ),
             OutlinedButton(
-              onPressed: signOut,
+              onPressed: () => context.read<LoginBloc>()
+                ..add(const LoginEvent.onSingOutPressed()),
               child: const Text('Sing out'),
             )
           ]
         ],
       ),
     );
-  }
-
-  Future<void> signOut() async {
-    await FirebaseAuth.instance.signOut();
   }
 }
