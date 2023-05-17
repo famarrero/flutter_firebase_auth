@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_firebase_auth/pages/auth/bloc/auth_bloc.dart';
-import 'package:flutter_firebase_auth/pages/login/bloc/login_bloc.dart';
 
 class EmailVerificationView extends StatefulWidget {
   const EmailVerificationView({Key? key}) : super(key: key);
@@ -21,32 +20,17 @@ class _EmailVerificationViewState extends State<EmailVerificationView> {
     sendEmailVerification();
 
     timer =
-        Timer.periodic(const Duration(seconds: 3), (_) => checkEmailVerified());
+        Timer.periodic(const Duration(seconds: 3), (_) => onEmailVerified());
 
     super.initState();
   }
 
   void sendEmailVerification() {
-    context.read<AuthBloc>().add(const AuthEvent.onSendEmailVerification());
+    context.read<AuthBloc>().add(const AuthEvent.sendEmailVerification());
   }
 
-  void checkEmailVerified() async {
-    context
-        .read<AuthBloc>()
-        .add(const AuthEvent.onEmailVerified(emailVerified: true));
-
-    // await FirebaseAuth.instance.currentUser?.reload();
-
-    // bool isEmailVerified = FirebaseAuth.instance.currentUser!.emailVerified;
-
-    // if (isEmailVerified) {
-    //   context.read<LoginBloc>().add(
-    //         const LoginEvent.onLoginStatusChange(
-    //           loginStatusEnum: LoginStatusEnum.loggedIn,
-    //         ),
-    //       );
-    //   timer.cancel();
-    // }
+  void onEmailVerified() async {
+    context.read<AuthBloc>().add(const AuthEvent.onEmailVerified());
   }
 
   @override

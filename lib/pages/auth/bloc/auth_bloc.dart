@@ -22,7 +22,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           ),
         ) {
     on<_AuthEventSignUpPressed>(_onAuthEventSignUpPressed);
-    on<_AuthEventEmailVerified>(_onAuthEventEmailVerified);
+    on<_AuthEventOnEmailVerified>(_onAuthEventEmailVerified);
     on<_AuthEventSendEmailVerification>(_onAuthEventSendEmailVerification);
   }
 
@@ -65,7 +65,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   void _onAuthEventEmailVerified(
-    _AuthEventEmailVerified event,
+    _AuthEventOnEmailVerified event,
     Emitter<AuthState> emit,
   ) async {
     await FirebaseAuth.instance.currentUser?.reload();

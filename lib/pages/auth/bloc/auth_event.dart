@@ -7,9 +7,7 @@ class AuthEvent with _$AuthEvent {
     required String password,
   }) = _AuthEventSignUpPressed;
 
-  const factory AuthEvent.onSendEmailVerification() = _AuthEventSendEmailVerification;
+  const factory AuthEvent.sendEmailVerification() = _AuthEventSendEmailVerification;
 
-  const factory AuthEvent.onEmailVerified({
-    required bool emailVerified,
-  }) = _AuthEventEmailVerified;
+  const factory AuthEvent.onEmailVerified() = _AuthEventOnEmailVerified;
 }
