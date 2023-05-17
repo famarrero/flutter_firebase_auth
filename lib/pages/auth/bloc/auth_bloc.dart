@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_firebase_auth/pages/login/bloc/login_bloc.dart';
 import 'package:flutter_firebase_auth/utils/base_state.dart';
 import 'package:flutter_firebase_auth/utils/failures.dart';
 import 'package:flutter_firebase_auth/utils/firebase_error_messages.dart';
@@ -10,15 +12,21 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc()
-      : super(
+  AuthBloc({
+    required this.loginBloc,
+  }) : super(
           const AuthState(
             authStatus: AuthStatusEnum.authenticating,
             signUp: BaseState.initial(),
+            sendEmailVerification: BaseState.initial(),
           ),
         ) {
     on<_AuthEventSignUpPressed>(_onAuthEventSignUpPressed);
+    on<_AuthEventEmailVerified>(_onAuthEventEmailVerified);
+    on<_AuthEventSendEmailVerification>(_onAuthEventSendEmailVerification);
   }
+
+  final LoginBloc loginBloc;
 
   void _onAuthEventSignUpPressed(
     _AuthEventSignUpPressed event,
@@ -53,6 +61,58 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           authStatus: AuthStatusEnum.authenticating,
         ),
       );
+    }
+  }
+
+  void _onAuthEventEmailVerified(
+    _AuthEventEmailVerified event,
+    Emitter<AuthState> emit,
+  ) async {
+    await FirebaseAuth.instance.currentUser?.reload();
+
+    bool isEmailVerified = FirebaseAuth.instance.currentUser!.emailVerified;
+
+    if (isEmailVerified) {
+      loginBloc.add(
+        const LoginEvent.onLoginStatusChange(
+          loginStatusEnum: LoginStatusEnum.loggedIn,
+        ),
+      );
+    }
+  }
+
+  void _onAuthEventSendEmailVerification(
+    _AuthEventSendEmailVerification event,
+    Emitter<AuthState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        sendEmailVerification:
+            state.sendEmailVerification.copyWith(isLoading: true),
+      ),
+    );
+
+    // await Future.delayed(const Duration(seconds: 3));
+
+    try {
+      await FirebaseAuth.instance.currentUser?.sendEmailVerification();
+
+      emit(
+        state.copyWith(
+          sendEmailVerification: const BaseState.loaded(true),
+        ),
+      );
+    } on FirebaseAuthException catch (e) {
+      emit(
+        state.copyWith(
+          sendEmailVerification: BaseState.fail(
+            FirebaseFailure(
+              getFirebaseErrorMessageByErrorCode(e.code),
+            ),
+          ),
+        ),
+      );
+      debugPrint('Email verification: ${e.message}');
     }
   }
 }

@@ -7,6 +7,7 @@ class AuthState with _$AuthState {
   const factory AuthState({
     required AuthStatusEnum authStatus,  
     required BaseState<bool> signUp,
+    required BaseState<bool> sendEmailVerification,
   }) = _AuthState; 
 
 }

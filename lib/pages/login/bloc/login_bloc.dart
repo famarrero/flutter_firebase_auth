@@ -18,6 +18,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         )) {
     on<_LoginEventLoginPressed>(_onLoginEventLoginPressed);
     on<_LoginEventSingOutPressed>(_onLoginEventSingOutPressed);
+    on<_LoginEventStatusChange>(_onLoginEventStatusChange);
   }
 
   void _onLoginEventLoginPressed(
@@ -33,17 +34,31 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     // await Future.delayed(const Duration(seconds: 3));
 
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      final UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: event.email,
         password: event.password,
       );
 
-      emit(
-        state.copyWith(
-          signIn: const BaseState.loaded(true),
-          loginStatus: LoginStatusEnum.loggedIn,
-        ),
-      );
+      if (userCredential.user?.emailVerified == true) {
+        emit(
+          state.copyWith(
+            signIn: const BaseState.loaded(true),
+            loginStatus: LoginStatusEnum.loggedIn,
+          ),
+        );
+      } else {
+        emit(
+          state.copyWith(
+            signIn: const BaseState.fail(
+              FirebaseFailure(
+                'This account has not been verified yet',
+              ),
+            ),
+            loginStatus: LoginStatusEnum.unLoggedIn,
+          ),
+        );
+      }
     } on FirebaseAuthException catch (e) {
       emit(
         state.copyWith(
@@ -90,5 +105,17 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         ),
       );
     }
+  }
+
+  void _onLoginEventStatusChange(
+    _LoginEventStatusChange event,
+    Emitter<LoginState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        signOut: const BaseState.loaded(true),
+        loginStatus: event.loginStatusEnum,
+      ),
+    );
   }
 }

@@ -16,43 +16,52 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AuthEvent {
-  String get email => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) onSingUpPressed,
+    required TResult Function() onSendEmailVerification,
+    required TResult Function(bool emailVerified) onEmailVerified,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? onSingUpPressed,
+    TResult? Function()? onSendEmailVerification,
+    TResult? Function(bool emailVerified)? onEmailVerified,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? onSingUpPressed,
+    TResult Function()? onSendEmailVerification,
+    TResult Function(bool emailVerified)? onEmailVerified,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AuthEventSignUpPressed value) onSingUpPressed,
+    required TResult Function(_AuthEventSendEmailVerification value)
+        onSendEmailVerification,
+    required TResult Function(_AuthEventEmailVerified value) onEmailVerified,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AuthEventSignUpPressed value)? onSingUpPressed,
+    TResult? Function(_AuthEventSendEmailVerification value)?
+        onSendEmailVerification,
+    TResult? Function(_AuthEventEmailVerified value)? onEmailVerified,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AuthEventSignUpPressed value)? onSingUpPressed,
+    TResult Function(_AuthEventSendEmailVerification value)?
+        onSendEmailVerification,
+    TResult Function(_AuthEventEmailVerified value)? onEmailVerified,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $AuthEventCopyWith<AuthEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,8 +69,6 @@ mixin _$AuthEvent {
 abstract class $AuthEventCopyWith<$Res> {
   factory $AuthEventCopyWith(AuthEvent value, $Res Function(AuthEvent) then) =
       _$AuthEventCopyWithImpl<$Res, AuthEvent>;
-  @useResult
-  $Res call({String email, String password});
 }
 
 /// @nodoc
@@ -73,33 +80,13 @@ class _$AuthEventCopyWithImpl<$Res, $Val extends AuthEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? email = null,
-    Object? password = null,
-  }) {
-    return _then(_value.copyWith(
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_AuthEventSignUpPressedCopyWith<$Res>
-    implements $AuthEventCopyWith<$Res> {
+abstract class _$$_AuthEventSignUpPressedCopyWith<$Res> {
   factory _$$_AuthEventSignUpPressedCopyWith(_$_AuthEventSignUpPressed value,
           $Res Function(_$_AuthEventSignUpPressed) then) =
       __$$_AuthEventSignUpPressedCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String email, String password});
 }
@@ -171,6 +158,8 @@ class _$_AuthEventSignUpPressed implements _AuthEventSignUpPressed {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) onSingUpPressed,
+    required TResult Function() onSendEmailVerification,
+    required TResult Function(bool emailVerified) onEmailVerified,
   }) {
     return onSingUpPressed(email, password);
   }
@@ -179,6 +168,8 @@ class _$_AuthEventSignUpPressed implements _AuthEventSignUpPressed {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? onSingUpPressed,
+    TResult? Function()? onSendEmailVerification,
+    TResult? Function(bool emailVerified)? onEmailVerified,
   }) {
     return onSingUpPressed?.call(email, password);
   }
@@ -187,6 +178,8 @@ class _$_AuthEventSignUpPressed implements _AuthEventSignUpPressed {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? onSingUpPressed,
+    TResult Function()? onSendEmailVerification,
+    TResult Function(bool emailVerified)? onEmailVerified,
     required TResult orElse(),
   }) {
     if (onSingUpPressed != null) {
@@ -199,6 +192,9 @@ class _$_AuthEventSignUpPressed implements _AuthEventSignUpPressed {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AuthEventSignUpPressed value) onSingUpPressed,
+    required TResult Function(_AuthEventSendEmailVerification value)
+        onSendEmailVerification,
+    required TResult Function(_AuthEventEmailVerified value) onEmailVerified,
   }) {
     return onSingUpPressed(this);
   }
@@ -207,6 +203,9 @@ class _$_AuthEventSignUpPressed implements _AuthEventSignUpPressed {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AuthEventSignUpPressed value)? onSingUpPressed,
+    TResult? Function(_AuthEventSendEmailVerification value)?
+        onSendEmailVerification,
+    TResult? Function(_AuthEventEmailVerified value)? onEmailVerified,
   }) {
     return onSingUpPressed?.call(this);
   }
@@ -215,6 +214,9 @@ class _$_AuthEventSignUpPressed implements _AuthEventSignUpPressed {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AuthEventSignUpPressed value)? onSingUpPressed,
+    TResult Function(_AuthEventSendEmailVerification value)?
+        onSendEmailVerification,
+    TResult Function(_AuthEventEmailVerified value)? onEmailVerified,
     required TResult orElse(),
   }) {
     if (onSingUpPressed != null) {
@@ -229,13 +231,271 @@ abstract class _AuthEventSignUpPressed implements AuthEvent {
       {required final String email,
       required final String password}) = _$_AuthEventSignUpPressed;
 
-  @override
   String get email;
-  @override
   String get password;
-  @override
   @JsonKey(ignore: true)
   _$$_AuthEventSignUpPressedCopyWith<_$_AuthEventSignUpPressed> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_AuthEventSendEmailVerificationCopyWith<$Res> {
+  factory _$$_AuthEventSendEmailVerificationCopyWith(
+          _$_AuthEventSendEmailVerification value,
+          $Res Function(_$_AuthEventSendEmailVerification) then) =
+      __$$_AuthEventSendEmailVerificationCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_AuthEventSendEmailVerificationCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$_AuthEventSendEmailVerification>
+    implements _$$_AuthEventSendEmailVerificationCopyWith<$Res> {
+  __$$_AuthEventSendEmailVerificationCopyWithImpl(
+      _$_AuthEventSendEmailVerification _value,
+      $Res Function(_$_AuthEventSendEmailVerification) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_AuthEventSendEmailVerification
+    implements _AuthEventSendEmailVerification {
+  const _$_AuthEventSendEmailVerification();
+
+  @override
+  String toString() {
+    return 'AuthEvent.onSendEmailVerification()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AuthEventSendEmailVerification);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password) onSingUpPressed,
+    required TResult Function() onSendEmailVerification,
+    required TResult Function(bool emailVerified) onEmailVerified,
+  }) {
+    return onSendEmailVerification();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? onSingUpPressed,
+    TResult? Function()? onSendEmailVerification,
+    TResult? Function(bool emailVerified)? onEmailVerified,
+  }) {
+    return onSendEmailVerification?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? onSingUpPressed,
+    TResult Function()? onSendEmailVerification,
+    TResult Function(bool emailVerified)? onEmailVerified,
+    required TResult orElse(),
+  }) {
+    if (onSendEmailVerification != null) {
+      return onSendEmailVerification();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AuthEventSignUpPressed value) onSingUpPressed,
+    required TResult Function(_AuthEventSendEmailVerification value)
+        onSendEmailVerification,
+    required TResult Function(_AuthEventEmailVerified value) onEmailVerified,
+  }) {
+    return onSendEmailVerification(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AuthEventSignUpPressed value)? onSingUpPressed,
+    TResult? Function(_AuthEventSendEmailVerification value)?
+        onSendEmailVerification,
+    TResult? Function(_AuthEventEmailVerified value)? onEmailVerified,
+  }) {
+    return onSendEmailVerification?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AuthEventSignUpPressed value)? onSingUpPressed,
+    TResult Function(_AuthEventSendEmailVerification value)?
+        onSendEmailVerification,
+    TResult Function(_AuthEventEmailVerified value)? onEmailVerified,
+    required TResult orElse(),
+  }) {
+    if (onSendEmailVerification != null) {
+      return onSendEmailVerification(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AuthEventSendEmailVerification implements AuthEvent {
+  const factory _AuthEventSendEmailVerification() =
+      _$_AuthEventSendEmailVerification;
+}
+
+/// @nodoc
+abstract class _$$_AuthEventEmailVerifiedCopyWith<$Res> {
+  factory _$$_AuthEventEmailVerifiedCopyWith(_$_AuthEventEmailVerified value,
+          $Res Function(_$_AuthEventEmailVerified) then) =
+      __$$_AuthEventEmailVerifiedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool emailVerified});
+}
+
+/// @nodoc
+class __$$_AuthEventEmailVerifiedCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$_AuthEventEmailVerified>
+    implements _$$_AuthEventEmailVerifiedCopyWith<$Res> {
+  __$$_AuthEventEmailVerifiedCopyWithImpl(_$_AuthEventEmailVerified _value,
+      $Res Function(_$_AuthEventEmailVerified) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? emailVerified = null,
+  }) {
+    return _then(_$_AuthEventEmailVerified(
+      emailVerified: null == emailVerified
+          ? _value.emailVerified
+          : emailVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_AuthEventEmailVerified implements _AuthEventEmailVerified {
+  const _$_AuthEventEmailVerified({required this.emailVerified});
+
+  @override
+  final bool emailVerified;
+
+  @override
+  String toString() {
+    return 'AuthEvent.onEmailVerified(emailVerified: $emailVerified)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AuthEventEmailVerified &&
+            (identical(other.emailVerified, emailVerified) ||
+                other.emailVerified == emailVerified));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, emailVerified);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_AuthEventEmailVerifiedCopyWith<_$_AuthEventEmailVerified> get copyWith =>
+      __$$_AuthEventEmailVerifiedCopyWithImpl<_$_AuthEventEmailVerified>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password) onSingUpPressed,
+    required TResult Function() onSendEmailVerification,
+    required TResult Function(bool emailVerified) onEmailVerified,
+  }) {
+    return onEmailVerified(emailVerified);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email, String password)? onSingUpPressed,
+    TResult? Function()? onSendEmailVerification,
+    TResult? Function(bool emailVerified)? onEmailVerified,
+  }) {
+    return onEmailVerified?.call(emailVerified);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? onSingUpPressed,
+    TResult Function()? onSendEmailVerification,
+    TResult Function(bool emailVerified)? onEmailVerified,
+    required TResult orElse(),
+  }) {
+    if (onEmailVerified != null) {
+      return onEmailVerified(emailVerified);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AuthEventSignUpPressed value) onSingUpPressed,
+    required TResult Function(_AuthEventSendEmailVerification value)
+        onSendEmailVerification,
+    required TResult Function(_AuthEventEmailVerified value) onEmailVerified,
+  }) {
+    return onEmailVerified(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AuthEventSignUpPressed value)? onSingUpPressed,
+    TResult? Function(_AuthEventSendEmailVerification value)?
+        onSendEmailVerification,
+    TResult? Function(_AuthEventEmailVerified value)? onEmailVerified,
+  }) {
+    return onEmailVerified?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AuthEventSignUpPressed value)? onSingUpPressed,
+    TResult Function(_AuthEventSendEmailVerification value)?
+        onSendEmailVerification,
+    TResult Function(_AuthEventEmailVerified value)? onEmailVerified,
+    required TResult orElse(),
+  }) {
+    if (onEmailVerified != null) {
+      return onEmailVerified(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AuthEventEmailVerified implements AuthEvent {
+  const factory _AuthEventEmailVerified({required final bool emailVerified}) =
+      _$_AuthEventEmailVerified;
+
+  bool get emailVerified;
+  @JsonKey(ignore: true)
+  _$$_AuthEventEmailVerifiedCopyWith<_$_AuthEventEmailVerified> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -243,6 +503,8 @@ abstract class _AuthEventSignUpPressed implements AuthEvent {
 mixin _$AuthState {
   AuthStatusEnum get authStatus => throw _privateConstructorUsedError;
   BaseState<bool> get signUp => throw _privateConstructorUsedError;
+  BaseState<bool> get sendEmailVerification =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
@@ -254,7 +516,10 @@ abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
-  $Res call({AuthStatusEnum authStatus, BaseState<bool> signUp});
+  $Res call(
+      {AuthStatusEnum authStatus,
+      BaseState<bool> signUp,
+      BaseState<bool> sendEmailVerification});
 }
 
 /// @nodoc
@@ -272,6 +537,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   $Res call({
     Object? authStatus = null,
     Object? signUp = null,
+    Object? sendEmailVerification = null,
   }) {
     return _then(_value.copyWith(
       authStatus: null == authStatus
@@ -281,6 +547,10 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
       signUp: null == signUp
           ? _value.signUp
           : signUp // ignore: cast_nullable_to_non_nullable
+              as BaseState<bool>,
+      sendEmailVerification: null == sendEmailVerification
+          ? _value.sendEmailVerification
+          : sendEmailVerification // ignore: cast_nullable_to_non_nullable
               as BaseState<bool>,
     ) as $Val);
   }
@@ -293,7 +563,10 @@ abstract class _$$_AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
       __$$_AuthStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AuthStatusEnum authStatus, BaseState<bool> signUp});
+  $Res call(
+      {AuthStatusEnum authStatus,
+      BaseState<bool> signUp,
+      BaseState<bool> sendEmailVerification});
 }
 
 /// @nodoc
@@ -309,6 +582,7 @@ class __$$_AuthStateCopyWithImpl<$Res>
   $Res call({
     Object? authStatus = null,
     Object? signUp = null,
+    Object? sendEmailVerification = null,
   }) {
     return _then(_$_AuthState(
       authStatus: null == authStatus
@@ -319,6 +593,10 @@ class __$$_AuthStateCopyWithImpl<$Res>
           ? _value.signUp
           : signUp // ignore: cast_nullable_to_non_nullable
               as BaseState<bool>,
+      sendEmailVerification: null == sendEmailVerification
+          ? _value.sendEmailVerification
+          : sendEmailVerification // ignore: cast_nullable_to_non_nullable
+              as BaseState<bool>,
     ));
   }
 }
@@ -326,17 +604,22 @@ class __$$_AuthStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AuthState extends _AuthState {
-  const _$_AuthState({required this.authStatus, required this.signUp})
+  const _$_AuthState(
+      {required this.authStatus,
+      required this.signUp,
+      required this.sendEmailVerification})
       : super._();
 
   @override
   final AuthStatusEnum authStatus;
   @override
   final BaseState<bool> signUp;
+  @override
+  final BaseState<bool> sendEmailVerification;
 
   @override
   String toString() {
-    return 'AuthState(authStatus: $authStatus, signUp: $signUp)';
+    return 'AuthState(authStatus: $authStatus, signUp: $signUp, sendEmailVerification: $sendEmailVerification)';
   }
 
   @override
@@ -346,11 +629,14 @@ class _$_AuthState extends _AuthState {
             other is _$_AuthState &&
             (identical(other.authStatus, authStatus) ||
                 other.authStatus == authStatus) &&
-            (identical(other.signUp, signUp) || other.signUp == signUp));
+            (identical(other.signUp, signUp) || other.signUp == signUp) &&
+            (identical(other.sendEmailVerification, sendEmailVerification) ||
+                other.sendEmailVerification == sendEmailVerification));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, authStatus, signUp);
+  int get hashCode =>
+      Object.hash(runtimeType, authStatus, signUp, sendEmailVerification);
 
   @JsonKey(ignore: true)
   @override
@@ -362,13 +648,16 @@ class _$_AuthState extends _AuthState {
 abstract class _AuthState extends AuthState {
   const factory _AuthState(
       {required final AuthStatusEnum authStatus,
-      required final BaseState<bool> signUp}) = _$_AuthState;
+      required final BaseState<bool> signUp,
+      required final BaseState<bool> sendEmailVerification}) = _$_AuthState;
   const _AuthState._() : super._();
 
   @override
   AuthStatusEnum get authStatus;
   @override
   BaseState<bool> get signUp;
+  @override
+  BaseState<bool> get sendEmailVerification;
   @override
   @JsonKey(ignore: true)
   _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>

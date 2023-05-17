@@ -8,4 +8,7 @@ class LoginEvent with _$LoginEvent {
   }) = _LoginEventLoginPressed;
 
   const factory LoginEvent.onSignOutPressed() = _LoginEventSingOutPressed;
+
+  const factory LoginEvent.onLoginStatusChange(
+      {required LoginStatusEnum loginStatusEnum}) = _LoginEventStatusChange;
 }
