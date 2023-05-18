@@ -2,6 +2,9 @@ part of 'login_bloc.dart';
 
 @freezed
 class LoginEvent with _$LoginEvent {
+  const factory LoginEvent.onGoogleSignUpPressed() =
+      _LoginEventGoogleSignUpPressed;
+
   const factory LoginEvent.onLoginPressed({
     required String email,
     required String password,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_auth/pages/auth/auth_page.dart';
+import 'package:flutter_firebase_auth/pages/forgot_password/forgot_password_page.dart';
 import 'package:flutter_firebase_auth/pages/home/home_page.dart';
 import 'package:flutter_firebase_auth/pages/login/bloc/login_bloc.dart';
 import 'package:flutter_firebase_auth/pages/login/login_page.dart';
@@ -9,6 +10,9 @@ import 'package:go_router/go_router.dart';
 abstract class Routes {
   static String loginPath = '/login';
   static String loginName = 'LoginPage';
+
+  static String forgotPasswordPath = '/forgot-password';
+  static String forgotPasswordName = 'ForgotPasswordPage';
 
   static String authenticationPath = '/authentication';
   static String authenticationName = 'AuthenticationPage';
@@ -41,6 +45,12 @@ GoRouter getAppRoute(LoginBloc loginCubit) => GoRouter(
             name: Routes.homeName,
             builder: (BuildContext context, GoRouterState state) {
               return const HomePage();
+            }),
+        GoRoute(
+            path: Routes.forgotPasswordPath,
+            name: Routes.forgotPasswordName,
+            builder: (BuildContext context, GoRouterState state) {
+              return const ForgotPasswordPage();
             }),
       ],
       redirect: (BuildContext context, GoRouterState state) {

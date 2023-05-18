@@ -6,6 +6,7 @@ class LoginState with _$LoginState {
 
   const factory LoginState({
     required LoginStatusEnum loginStatus,
+    required BaseState<bool> googleSignUp,
     required BaseState<bool> signIn,
     required BaseState<bool> signOut,
   }) = _LoginState; 
