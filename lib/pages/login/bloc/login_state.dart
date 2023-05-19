@@ -9,7 +9,7 @@ class LoginState with _$LoginState {
     required BaseState<bool> googleSignUp,
     required BaseState<bool> signIn,
     required BaseState<bool> signOut,
-  }) = _LoginState; 
+  }) = _LoginState;
 
   /// Get true id the user is logged
   bool get isLogged => loginStatus == LoginStatusEnum.loggedIn;
@@ -18,4 +18,4 @@ class LoginState with _$LoginState {
 /// Login possible states.
 /// [loggedIn] when user is logged in the app.
 /// [unLoggedIn] when user is not logged in the app.
-enum LoginStatusEnum { authenticating, loggedIn, unLoggedIn }
+enum LoginStatusEnum { loggedIn, unLoggedIn }

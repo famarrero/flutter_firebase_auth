@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_firebase_auth/pages/login/bloc/login_bloc.dart';
+import 'package:flutter_firebase_auth/routes/go_route.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -36,6 +38,11 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 24.0),
+                  ElevatedButton(
+                    onPressed: () => context.push(Routes.changePasswordPath),
+                    child: const Text('Change password'),
+                  ),
+                  const SizedBox(height: 24.0),
                   state.signOut.isLoading
                       ? const CupertinoActivityIndicator(
                           radius: 16.0,
@@ -47,7 +54,7 @@ class HomePage extends StatelessWidget {
                               const LoginEvent.onSignOutPressed(),
                             ),
                           child: const Text('Sing out'),
-                        )
+                        ),
                 ]
               ],
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_auth/pages/auth/auth_page.dart';
+import 'package:flutter_firebase_auth/pages/change_password/change_password_page.dart';
 import 'package:flutter_firebase_auth/pages/forgot_password/forgot_password_page.dart';
 import 'package:flutter_firebase_auth/pages/home/home_page.dart';
 import 'package:flutter_firebase_auth/pages/login/bloc/login_bloc.dart';
@@ -19,6 +20,9 @@ abstract class Routes {
 
   static String homePath = '/home';
   static String homeName = 'HomePage';
+
+  static String changePasswordPath = '/change-password';
+  static String changePasswordName = 'ChangePasswordPage';
 }
 
 GoRouter getAppRoute(LoginBloc loginCubit) => GoRouter(
@@ -26,7 +30,7 @@ GoRouter getAppRoute(LoginBloc loginCubit) => GoRouter(
       routes: <GoRoute>[
         GoRoute(
           path: '/',
-          redirect: (BuildContext context, GoRouterState state) => '/home/',
+          redirect: (BuildContext context, GoRouterState state) => '/home',
         ),
         GoRoute(
             path: Routes.loginPath,
@@ -41,16 +45,22 @@ GoRouter getAppRoute(LoginBloc loginCubit) => GoRouter(
               return const AuthPage();
             }),
         GoRoute(
+            path: Routes.forgotPasswordPath,
+            name: Routes.forgotPasswordName,
+            builder: (BuildContext context, GoRouterState state) {
+              return const ForgotPasswordPage();
+            }),
+        GoRoute(
             path: Routes.homePath,
             name: Routes.homeName,
             builder: (BuildContext context, GoRouterState state) {
               return const HomePage();
             }),
         GoRoute(
-            path: Routes.forgotPasswordPath,
-            name: Routes.forgotPasswordName,
+            path: Routes.changePasswordPath,
+            name: Routes.changePasswordName,
             builder: (BuildContext context, GoRouterState state) {
-              return const ForgotPasswordPage();
+              return const ChangePasswordPage();
             }),
       ],
       redirect: (BuildContext context, GoRouterState state) {
@@ -58,15 +68,6 @@ GoRouter getAppRoute(LoginBloc loginCubit) => GoRouter(
 
         // get the LoginStatus
         final loginStatus = loginCubit.state.loginStatus;
-
-        // verify is app is in authenticating route
-        final locationIsAuthenticationPage =
-            state.subloc == Routes.authenticationPath;
-        if (loginStatus == LoginStatusEnum.authenticating) {
-          return locationIsAuthenticationPage
-              ? null
-              : Routes.authenticationPath;
-        }
 
         // verify is app is in login route
         final locationIsLoginPage = state.subloc == Routes.loginPath;
