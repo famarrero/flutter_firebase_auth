@@ -88,6 +88,9 @@ class _LoginPageState extends State<LoginPage> {
                               ..add(const LoginEvent.onGoogleSignUpPressed()),
                             child: const Text(' Sign Up with Google'),
                           ),
+                    const SizedBox(
+                      height: 40,
+                    ),
                     TextField(
                       controller: emailController,
                       decoration: InputDecoration(

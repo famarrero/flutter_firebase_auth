@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_firebase_auth/pages/auth/auth_page.dart';
@@ -127,27 +126,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                                   newPassword:
                                       newPasswordController.text.trim(),
                                 )),
-                              child: const Text('Sign in'),
+                              child: const Text('Change password'),
                             ),
-                      const SizedBox(height: 24.0),
-                      RichText(
-                        text: TextSpan(
-                          text: 'No account? ',
-                          style: const TextStyle(
-                            color: Colors.black,
-                          ),
-                          children: [
-                            TextSpan(
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = onSingUpTextPressed,
-                              text: 'Sign Up',
-                              style: const TextStyle(
-                                color: Colors.blue,
-                              ),
-                            )
-                          ],
-                        ),
-                      )
                     ],
                   ),
                 ),

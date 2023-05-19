@@ -37,6 +37,7 @@ class HomePage extends StatelessWidget {
                       ),
                     ],
                   ),
+                  ...user.providerData.map((e) => Text(e.providerId)),
                   const SizedBox(height: 24.0),
                   ElevatedButton(
                     onPressed: () => context.push(Routes.changePasswordPath),

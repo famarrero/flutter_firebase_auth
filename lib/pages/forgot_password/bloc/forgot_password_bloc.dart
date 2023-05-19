@@ -46,7 +46,7 @@ class ForgetPasswordBloc
         state.copyWith(
           sendEmail: BaseState.fail(
             FirebaseFailure(
-              getFirebaseErrorMessageByErrorCode(e.code),
+              getFirebaseErrorMessageByErrorCode(e),
             ),
           ),
         ),

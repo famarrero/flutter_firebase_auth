@@ -60,7 +60,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         state.copyWith(
           googleSignUp: BaseState.fail(
             FirebaseFailure(
-              getFirebaseErrorMessageByErrorCode(e.code),
+              getFirebaseErrorMessageByErrorCode(e),
             ),
           ),
           loginStatus: LoginStatusEnum.unLoggedIn,
@@ -74,6 +74,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         ),
       );
     }
+
+    /// Reset the googleSignUp state
+    emit(
+      state.copyWith(
+        googleSignUp: const BaseState.initial(),
+      ),
+    );
   }
 
   void _onLoginEventLoginPressed(
@@ -119,13 +126,20 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         state.copyWith(
           signIn: BaseState.fail(
             FirebaseFailure(
-              getFirebaseErrorMessageByErrorCode(e.code),
+              getFirebaseErrorMessageByErrorCode(e),
             ),
           ),
           loginStatus: LoginStatusEnum.unLoggedIn,
         ),
       );
     }
+
+    /// Reset the signIn state
+    emit(
+      state.copyWith(
+        signIn: const BaseState.initial(),
+      ),
+    );
   }
 
   void _onLoginEventSingOutPressed(
@@ -153,7 +167,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         state.copyWith(
           signOut: BaseState.fail(
             FirebaseFailure(
-              getFirebaseErrorMessageByErrorCode(e.code),
+              getFirebaseErrorMessageByErrorCode(e),
             ),
           ),
           loginStatus: LoginStatusEnum.loggedIn,

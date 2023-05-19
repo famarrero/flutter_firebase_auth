@@ -97,7 +97,7 @@ class ChangePasswordBloc
         state.copyWith(
           changePassword: BaseState.fail(
             FirebaseFailure(
-              getFirebaseErrorMessageByErrorCode(e.code),
+              getFirebaseErrorMessageByErrorCode(e),
             ),
           ),
         ),

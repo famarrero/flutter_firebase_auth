@@ -55,7 +55,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         state.copyWith(
           signUp: BaseState.fail(
             FirebaseFailure(
-              getFirebaseErrorMessageByErrorCode(e.code),
+              getFirebaseErrorMessageByErrorCode(e),
             ),
           ),
           authStatus: AuthStatusEnum.authenticating,
@@ -107,7 +107,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         state.copyWith(
           sendEmailVerification: BaseState.fail(
             FirebaseFailure(
-              getFirebaseErrorMessageByErrorCode(e.code),
+              getFirebaseErrorMessageByErrorCode(e),
             ),
           ),
         ),
