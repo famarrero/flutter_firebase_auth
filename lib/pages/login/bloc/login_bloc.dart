@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_firebase_auth/utils/base_state.dart';
 import 'package:flutter_firebase_auth/utils/failures.dart';
 import 'package:flutter_firebase_auth/utils/firebase_error_messages.dart';
@@ -66,6 +67,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           loginStatus: LoginStatusEnum.unLoggedIn,
         ),
       );
+      debugPrint(getFirebaseErrorMessageByErrorCode(e));
     } catch (e) {
       emit(
         state.copyWith(
@@ -73,6 +75,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           loginStatus: LoginStatusEnum.unLoggedIn,
         ),
       );
+      debugPrint(e.toString());
     }
 
     /// Reset the googleSignUp state
